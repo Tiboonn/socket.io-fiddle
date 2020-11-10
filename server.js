@@ -2,18 +2,15 @@
 const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+const io = require('socket.io')(server, {
+  pingInterval: 1000
+});
 const port = process.env.PORT || 3000;
 
 app.use(express.static(__dirname + '/public'));
 
 io.on('connect', socket => {
   console.log(`connect ${socket.id}`);
-
-  socket.emit('hello', 1, '2', {
-    hello: 'you'
-  });
-
   socket.on('disconnect', () => {
     console.log(`disconnect ${socket.id}`);
   });

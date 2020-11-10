@@ -9,6 +9,6 @@ socket.on('disconnect', () => {
   console.log(`disconnect ${socket.id}`);
 });
 
-socket.on('hello', (a, b, c) => {
-  console.log(a, b, c);
+socket.on('pong', (ms) => {
+  console.log(ms);
 });
